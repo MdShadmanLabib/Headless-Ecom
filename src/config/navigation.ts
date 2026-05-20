@@ -6,7 +6,19 @@ export interface NavItem {
   icon?: string;
 }
 
-export const mainNavigation: NavItem[] = [
+export interface MegaMenuPromo {
+  title: string;
+  description: string;
+  href: string;
+  badge?: string;
+}
+
+export interface MegaMenuItem extends NavItem {
+  columns?: NavItem[][];
+  promo?: MegaMenuPromo;
+}
+
+export const mainNavigation: MegaMenuItem[] = [
   {
     label: "Laptop",
     href: "/categories/laptop",
@@ -17,6 +29,12 @@ export const mainNavigation: NavItem[] = [
       { label: "OLED Laptop", href: "/categories/laptop/oled" },
       { label: "Laptop Accessories", href: "/categories/laptop/accessories" },
     ],
+    promo: {
+      title: "Gaming Laptops",
+      description: "RTX 50 Series now available",
+      href: "/categories/laptop/gaming",
+      badge: "New",
+    },
   },
   {
     label: "Desktop",
@@ -28,10 +46,33 @@ export const mainNavigation: NavItem[] = [
       { label: "All-in-One PC", href: "/categories/desktop/aio" },
       { label: "Mini PC", href: "/categories/desktop/mini" },
     ],
+    promo: {
+      title: "Custom Build PCs",
+      description: "Build your dream machine",
+      href: "/pc-builder",
+      badge: "Popular",
+    },
   },
   {
     label: "Components",
     href: "/categories/components",
+    columns: [
+      [
+        { label: "Processor", href: "/categories/components/processor" },
+        { label: "Motherboard", href: "/categories/components/motherboard" },
+        { label: "Graphics Card", href: "/categories/components/graphics-card" },
+      ],
+      [
+        { label: "RAM", href: "/categories/components/ram" },
+        { label: "SSD", href: "/categories/components/ssd" },
+        { label: "HDD", href: "/categories/components/hdd" },
+      ],
+      [
+        { label: "Power Supply", href: "/categories/components/psu" },
+        { label: "Casing", href: "/categories/components/casing" },
+        { label: "CPU Cooler", href: "/categories/components/cpu-cooler" },
+      ],
+    ],
     children: [
       { label: "Processor", href: "/categories/components/processor" },
       { label: "Motherboard", href: "/categories/components/motherboard" },
@@ -43,6 +84,12 @@ export const mainNavigation: NavItem[] = [
       { label: "Casing", href: "/categories/components/casing" },
       { label: "CPU Cooler", href: "/categories/components/cpu-cooler" },
     ],
+    promo: {
+      title: "RTX 5090 Ti",
+      description: "Next-gen performance is here",
+      href: "/categories/components/graphics-card",
+      badge: "Hot",
+    },
   },
   {
     label: "Monitor",
@@ -68,6 +115,18 @@ export const mainNavigation: NavItem[] = [
   {
     label: "Accessories",
     href: "/categories/accessories",
+    columns: [
+      [
+        { label: "Keyboard", href: "/categories/accessories/keyboard" },
+        { label: "Mouse", href: "/categories/accessories/mouse" },
+        { label: "Headset", href: "/categories/accessories/headset" },
+      ],
+      [
+        { label: "Webcam", href: "/categories/accessories/webcam" },
+        { label: "Speaker", href: "/categories/accessories/speaker" },
+        { label: "Mousepad", href: "/categories/accessories/mousepad" },
+      ],
+    ],
     children: [
       { label: "Keyboard", href: "/categories/accessories/keyboard" },
       { label: "Mouse", href: "/categories/accessories/mouse" },
@@ -126,3 +185,9 @@ export const footerNavigation = {
     { label: "Home Service", href: "/home-service" },
   ],
 } as const;
+
+export const announcementMessages = [
+  "Free shipping on orders over ৳5,000",
+  "Up to 30% off on Gaming Laptops — Limited Time",
+  "New RTX 50 Series GPUs now in stock",
+] as const;
