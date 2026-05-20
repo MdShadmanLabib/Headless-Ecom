@@ -1,0 +1,11 @@
+export { HeroBanner } from "./hero-banner";
+export { FeaturedCategories } from "./featured-categories";
+export { FlashDeals } from "./flash-deals";
+export { TrendingProducts } from "./trending-products";
+export { GamingSection } from "./gaming-section";
+export { LaptopSection } from "./laptop-section";
+export { ComponentsSection } from "./components-section";
+export { BrandShowcase } from "./brand-showcase";
+export { PromotionalBanners } from "./promotional-banners";
+export { RecentlyViewed } from "./recently-viewed";
+export { BlogPreviews } from "./blog-previews";
