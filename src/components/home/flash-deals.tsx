@@ -7,13 +7,16 @@ import { ProductCard } from "@/components/product/product-card";
 import { flashDealProducts } from "@/data/mock-products";
 
 function useCountdown(targetDate: Date) {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(getTimeLeft(targetDate));
-    }, 1000);
-    return () => clearInterval(timer);
+    const update = () => setTimeLeft(getTimeLeft(targetDate));
+    const immediate = setTimeout(update, 0);
+    const timer = setInterval(update, 1000);
+    return () => {
+      clearTimeout(immediate);
+      clearInterval(timer);
+    };
   }, [targetDate]);
 
   return timeLeft;
@@ -29,8 +32,11 @@ function getTimeLeft(target: Date) {
 }
 
 function CountdownTimer() {
-  const endDate = new Date();
-  endDate.setHours(endDate.getHours() + 23, 59, 59);
+  const [endDate] = useState(() => {
+    const d = new Date();
+    d.setHours(d.getHours() + 23, 59, 59);
+    return d;
+  });
   const { hours, minutes, seconds } = useCountdown(endDate);
 
   return (
